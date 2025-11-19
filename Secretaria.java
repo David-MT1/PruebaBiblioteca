@@ -6,7 +6,7 @@ public class Secretaria  extends Persona {
         return super.toString();
     }
 
-     public boolean validarConvalidacion(Estudiante est, String cursoAnterior, String cursoEquivalente) {
+    public boolean validarConvalidacion(Estudiante est, String cursoAnterior, String cursoEquivalente) {
         if (!est.passedCourses.contains(cursoAnterior)) {
             System.out.println("El estudiante no ha aprobado el curso: " + cursoAnterior);
             return false;
@@ -19,5 +19,13 @@ public class Secretaria  extends Persona {
 
         System.out.println("Convalidación válida para: " + cursoAnterior + " → " + cursoEquivalente);
         return true;
+    }
+    
+    public void aprobarSolicitud(Solicitud solicitud) {
+    if (solicitud.evaluar()) {
+        solicitud.aprobar();
+    } else {
+        solicitud.rechazar("No cumple los requisitos");
+    }
     }
 }

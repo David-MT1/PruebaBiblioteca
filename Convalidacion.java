@@ -1,49 +1,42 @@
-public class Convalidacion {
-
+public class Convalidacion extends Solicitud {
     private Curso curso;
-    private String estado;
-    private int similitud;
+    private int similitud; 
+    public Convalidacion(String id, Estudiante estudiante, String fecha, Curso curso, int similitud) {
+        super(id, estudiante, fecha);
+        this.curso = curso;
+        this.similitud = similitud;
+    }
 
     public Curso getCurso() {
         return curso;
     }
-
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public int getSimilitud() {
         return similitud;
     }
-
     public void setSimilitud(int similitud) {
         this.similitud = similitud;
     }
-
-    public void registrarSolicitud() {
-        System.out.println("Solicitud registrada para el curso: " + curso.getNombre());
-        this.estado = "Registrado";
+    @Override
+    public void registrar() {
+        super.registrar();
+        System.out.println("Solicitud de convalidación registrada para el curso: " + curso.getNombre());
     }
-
-    public boolean evaluarSolicitud() {
+    @Override
+    public boolean evaluar() {
         return similitud >= 70;
     }
-
-    public void aprobarConvalidacion() {
+    @Override
+    public void aprobar() {
         this.estado = "Aprobado";
-        System.out.println("Convalidación aprobada del curso: " + curso.getNombre());
+        System.out.println("Convalidación APROBADA del curso: " + curso.getNombre());
     }
-
-    public void rechazarConvalidacion(String motivo) {
+    @Override
+    public void rechazar(String motivo) {
         this.estado = "Rechazado";
-        System.out.println("Convalidación rechazada. Motivo: " + motivo);
+        System.out.println("Convalidación RECHAZADA del curso: " + curso.getNombre() +
+                ". Motivo: " + motivo);
     }
 }
